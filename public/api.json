@@ -1,0 +1,35 @@
+{
+  "produtos": [
+    {
+      "id" : "123",
+      "nome": "Blusa Manga Longa Decote V",
+      "descricao": "Blusa de manga longa com decote V. Fit justinho com elastano.",
+      "preco": 89.90,
+      "tamanho": "P, M, G",
+      "cores": "Preto, Branco, Azul",
+      "categoria": 1,
+      "subcategoria": 1,
+      "avaliacoes": 4,
+      "imagem_cor": 1,
+      "imagens_produto": [
+        "https://br.pinterest.com/pin/587649451418943601/",
+        "https://br.pinterest.com/pin/587649451418943609/",
+        "https://br.pinterest.com/pin/587649451418943605/",
+        "https://br.pinterest.com/pin/587649451418943601/"
+      ],
+      "especificacoes": {
+        "ref": [101218332, 101271942],
+        "descricao": "Blusa de manga longa com decote v. fit justinho com elastano",
+        "composicao": "95% algodão, 5% elastano",
+        "medidas_modelo": {
+          "altura": 1.63,
+          "busto": 80,
+          "cintura": 60,
+          "quadril": 90,
+          "modelo_veste": "P"
+        }
+      }
+    }
+    
+  ]
+}
