@@ -36,7 +36,7 @@ export const ButtonLink = styled(Link)`
 export const ButtonCart = styled.button`
   border: 2px solid ${Colors.ligthYellow};
   color: ${Colors.red};
-  background-color: ${Colors.ligthYellow};
+  background-color: ${Colors.black};
   font-size: 16px;
   font-weight: bold;
   padding: 8px 16px;
@@ -52,9 +52,10 @@ export const ButtonCart = styled.button`
 `
 
 export const ButtonCartPayment = styled.button`
-  border: 2px solid ${Colors.ligthYellow};
-  color: ${Colors.red};
-  background-color: ${Colors.ligthYellow};
+  border: 2px solid ${Colors.black};
+  border-radius: 10px;
+  color: ${Colors.withe};
+  background-color: ${Colors.black};
   font-size: 16px;
   font-weight: bold;
   padding: 8px 16px;
@@ -64,7 +65,8 @@ export const ButtonCartPayment = styled.button`
   display: inline-block;
   width: 100%;
 
-  :hover {
-    background-color: ${Colors.darkYellow};
+  &:hover {
+    background-color: ${Colors.withe};
+    color: ${Colors.black};
   }
 `

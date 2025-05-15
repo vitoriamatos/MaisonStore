@@ -1,10 +1,10 @@
 {
   "produtos": [
     {
-      "id" : "123",
+      "id": "123",
       "nome": "Blusa Manga Longa Decote V",
       "descricao": "Blusa de manga longa com decote V. Fit justinho com elastano.",
-      "preco": 89.90,
+      "preco": 89.9,
       "tamanho": "P, M, G",
       "cores": "Preto, Branco, Azul",
       "categoria": 1,
@@ -30,6 +30,5 @@
         }
       }
     }
-    
   ]
 }

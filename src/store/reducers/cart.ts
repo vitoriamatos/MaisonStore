@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Restaurant from '../../pages/Home'
 
 type CartState = {
   items: CartItem[]
@@ -13,8 +12,6 @@ type CartItem = {
   name: string
   description: string
   price: number
-  portion: string
-  idRestaurant: number // Assuming 'Restaurant' is the correct type
 }
 const storedCart = localStorage.getItem('cart')
 

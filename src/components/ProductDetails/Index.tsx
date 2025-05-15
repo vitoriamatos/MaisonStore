@@ -1,49 +1,118 @@
 import { useParams } from 'react-router-dom'
 import { useGetFeaturedProductQuery } from '../../services/api'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/cart'
 
-const Container = styled.div`
-  padding: 2rem;
-`
-
-const ImageGallery = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-
-  img {
-    width: 200px;
-    border-radius: 8px;
-  }
-`
+import { useState } from 'react'
+import {
+  Container,
+  DescriptionArea,
+  LeftColumn,
+  MainImage,
+  RightColumn,
+  ThumbnailGallery
+} from './styles'
+import Marketing from '../Marketing'
+import Filter from '../Filter'
+import Accordion from '../Accordion'
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>()
   const { data: products, isLoading } = useGetFeaturedProductQuery()
+  const dispatch = useDispatch()
+  const [mainImage, setMainImage] = useState<string | null>(null)
 
+  const [selectedSize, setSelectedSize] = useState<string | null>(null)
+  const sizes = ['PP', 'P', 'M', 'G']
   if (isLoading) return <p>Carregando...</p>
-  const idNumber = Number(id)
   const product = products?.find((item) => item.id === id)
-
-  console.log(idNumber)
   if (!product) return <p>Produto não encontrado.</p>
 
-  return (
-    <Container>
-      <h1>{product.nome}</h1>
-      <p>{product.descricao}</p>
-      <p>Preço: R$ {product.preco.toFixed(2)}</p>
-      <p>Composição: {product.especificacoes[0].composicao}</p>
-      <p>
-        Modelo veste: {product.especificacoes[0].medidas_modelo[0].modelo_veste}
-      </p>
+  const especificacoesArray = Array.isArray(product.especificacoes)
+    ? product.especificacoes
+    : [product.especificacoes]
 
-      <ImageGallery>
-        {product.imagens_produto.map((img, index) => (
-          <img key={index} src={img} alt={`Produto imagem ${index + 1}`} />
-        ))}
-      </ImageGallery>
-    </Container>
+  console.log(especificacoesArray[0].ref[0])
+  const handleImageClick = (img: string) => {
+    setMainImage(img)
+  }
+
+  const handleAddToCart = () => {
+    if (!product) return
+
+    const cartItem = {
+      id: Number(product.id),
+      image: product.imagens_produto[0],
+      name: product.nome,
+      description: product.descricao,
+      price: product.preco
+    }
+
+    dispatch(add(cartItem))
+  }
+
+  return (
+    <>
+      <Filter />
+      <Container>
+        <LeftColumn>
+          <MainImage
+            src={mainImage || product.imagens_produto[0]}
+            alt="Imagem principal"
+          />
+          <ThumbnailGallery>
+            {product.imagens_produto.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Miniatura ${index + 1}`}
+                onClick={() => handleImageClick(img)}
+              />
+            ))}
+          </ThumbnailGallery>
+        </LeftColumn>
+
+        <RightColumn>
+          <h1>{product.nome}</h1>
+          <div>
+            <p>{product.descricao}</p>
+          </div>
+          <p className="price">R$ {product.preco.toFixed(2)}</p>
+          <div>
+            <strong>Tamanho:</strong>
+            <div className="size-selector">
+              {sizes.map((size) => (
+                <button
+                  key={size}
+                  className={`size-button ${
+                    selectedSize === size ? 'selected' : ''
+                  }`}
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+          <button onClick={handleAddToCart}>Adicionar à sacola</button>
+          <Accordion title="descrição do produto">
+            <div>
+              ref:{especificacoesArray[0].ref[0]} |
+              {especificacoesArray[0].ref[1]}
+            </div>
+            <div>{especificacoesArray[0].descricao}</div>
+            <div>composicao: {especificacoesArray[0].composicao}</div>
+            <div>
+              medidas da modelo: altura: 1.63 busto: 80 cintura: 60 quadril: 90
+            </div>
+            <div>modelo veste tamanho: p</div>
+          </Accordion>
+        </RightColumn>
+      </Container>
+
+      <Marketing />
+    </>
   )
 }
 

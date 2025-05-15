@@ -28,18 +28,10 @@ const Footer = () => {
         <Column>
           <Title>nos siga nas redes sociais</Title>
           <IconRow>
-            <Icon>
-              <FaInstagram size={20} />
-            </Icon>
-            <Icon>
-              <FaTiktok size={20} />
-            </Icon>
-            <Icon>
-              <FaYoutube size={20} />
-            </Icon>
-            <Icon>
-              <FaSpotify size={20} />
-            </Icon>
+            <Icon>{/* <FaInstagram size={20} /> */}</Icon>
+            <Icon>{/* <FaTiktok size={20} /> */}</Icon>
+            <Icon>{/* <FaYoutube size={20} /> */}</Icon>
+            <Icon>{/* <FaSpotify size={20} /> */}</Icon>
           </IconRow>
           <Title>baixe nosso app</Title>
           {/* <QRCode src={qr} /> */}
@@ -81,9 +73,9 @@ const Footer = () => {
         <Column>
           <Title>formas de pagamento</Title>
           <IconRow>
-            <FaCcVisa size={32} />
-            <FaCcMastercard size={32} />
-            <FaCcAmex size={32} />
+            {/* <FaCcVisa size={32} /> */}
+            {/* <FaCcMastercard size={32} />
+            <FaCcAmex size={32} /> */}
           </IconRow>
         </Column>
       </FooterGrid>

@@ -65,7 +65,6 @@ const BannerPerfil = ({
 
   return (
     <>
-      <Header />
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
