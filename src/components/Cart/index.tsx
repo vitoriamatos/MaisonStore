@@ -32,8 +32,9 @@ import { RootReducer } from '../../store'
 import { close, remove, openCheckout } from '../../store/reducers/cart'
 
 import closeIcon from '../../assets/images/fechar.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Checkout from '../Checkout'
+import { useLocation } from 'react-router-dom'
 
 const Cart = () => {
   const { isOpen, items, isOpenCheckout } = useSelector(
@@ -52,6 +53,13 @@ const Cart = () => {
     setShowCheckout(true)
     dispatch(openCheckout())
   }
+  const location = useLocation()
+
+  useEffect(() => {
+    // Fecha o carrinho automaticamente quando a rota mudar
+    dispatch(close())
+  }, [location.pathname])
+
   const getTotalPrice = () => {
     return items.reduce((count, actualValue) => {
       if (actualValue.price) {
@@ -125,14 +133,16 @@ const Cart = () => {
           <Prices>Valor total</Prices>
           <Prices>{formattedTotalPrice}</Prices>
         </PriceContainer>
+
         <Button
-          title="Clique aqui para continuar com a compra"
-          type="button_cart"
+          type="link"
+          title="Continuar para entrega"
           onClick={() => {
-            openCheckouts()
+            closeCart()
           }}
+          to={`/cart`}
         >
-          Continuar para a entrega
+          Continuar para entrega2
         </Button>
 
         <FreightContainer>
@@ -190,8 +200,8 @@ const Cart = () => {
           </CepBody>
         </FreightContainer>
       </Sidebar>
-
-      {showCheckout && <Checkout />}
+      {/* 
+      {showCheckout && <Checkout />} */}
     </CartContainer>
   )
 }

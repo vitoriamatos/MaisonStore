@@ -7,6 +7,7 @@ export const Container = styled.div`
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
+  margin-top: 50px;
 `
 
 export const LeftColumn = styled.div`

@@ -16,6 +16,8 @@ import {
 import Marketing from '../Marketing'
 import Filter from '../Filter'
 import Accordion from '../Accordion'
+import Cep from '../Cep'
+import Review from '../Review'
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -108,8 +110,14 @@ const ProductDetails = () => {
             </div>
             <div>modelo veste tamanho: p</div>
           </Accordion>
+
+          <Accordion title="consultar cep">
+            <Cep></Cep>
+          </Accordion>
         </RightColumn>
       </Container>
+
+      <Review></Review>
 
       <Marketing />
     </>

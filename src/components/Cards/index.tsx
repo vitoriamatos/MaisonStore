@@ -27,18 +27,15 @@ type AccordionProps = {
   children: React.ReactNode
 }
 
-const Accordion = ({ title, children }: AccordionProps) => {
+const Cards = ({ title, children }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(true)
 
   return (
     <Wrapper>
-      <Header onClick={() => setIsOpen(!isOpen)}>
-        {title}
-        <span>{isOpen ? '▲' : '▼'}</span>
-      </Header>
+      <Header onClick={() => setIsOpen(!isOpen)}>{title}</Header>
       <Content isOpen={isOpen}>{children}</Content>
     </Wrapper>
   )
 }
 
-export default Accordion
+export default Cards
