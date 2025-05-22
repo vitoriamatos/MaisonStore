@@ -53,7 +53,7 @@ const Header = () => {
           <NavItem>
             <CloseButton onClick={toggleMenu}>&times;</CloseButton>
           </NavItem>
-          <NavItem href="#home">
+          <NavItem href="/feminino">
             <NavContianer>Feminino</NavContianer>
           </NavItem>
           <NavItem href="#about">
